@@ -20,4 +20,4 @@ jobs:
     
     - name: Build Kernel image
       run: |
-        make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bzImage modules dtbs
+        make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- pyra-defconfig bzImage modules dtbs

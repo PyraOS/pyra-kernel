@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [run_build]
+
+jobs:
+  pyra-kernel:
+    name: Build Kernel
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt install build-essential git gcc-arm-linux-gnueabihf
+    
+    - name: Build Kernel image
+      run: |
+        make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bzImage modules dtbs
